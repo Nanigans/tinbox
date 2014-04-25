@@ -26,7 +26,7 @@ include redis
 include memcached
 include composer
 
-include laravel_app
+#include laravel_app
 
 class { 'postgresql::server':
   config_hash => {

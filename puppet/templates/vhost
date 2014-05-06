@@ -1,5 +1,5 @@
 <VirtualHost *:80>
-  ServerName tinman.nanigans.com
+  ServerName tinbox.nanigans.com
 	DocumentRoot /var/www/public
 	
 	<Directory />

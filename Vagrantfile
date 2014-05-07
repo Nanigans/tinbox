@@ -6,10 +6,10 @@ Vagrant.configure("2") do |config|
         lv4_config.vm.box = "precise32"
         lv4_config.vm.box_url = "http://files.vagrantup.com/precise32.box"
         lv4_config.ssh.forward_agent = true
-        
+
         # This will give the machine a static IP uncomment to enable
         lv4_config.vm.network :private_network, ip: "192.168.56.102"
-        
+
         #lv4_config.vm.network :forwarded_port, guest: 80, host: 8888, auto_correct: true
         lv4_config.vm.network :forwarded_port, guest: 3306, host: 8889, auto_correct: true
         lv4_config.vm.network :forwarded_port, guest: 5432, host: 5433, auto_correct: true
@@ -31,8 +31,8 @@ Vagrant.configure("2") do |config|
 
         lv4_config.vm.provision :shell, :path => "puppet/scripts/enable_remote_mysql_access.sh"
         lv4_config.vm.provision :shell, :inline => "chmod 777 /var/www/app/storage/*"
-        lv4_config.vm.provision :shell, :inline => "cd /var/www && php artisan migrate"
-        lv4_config.vm.provision :shell, :inline => "cd /var/www && php artisan db:seed"
+        lv4_config.vm.provision :shell, :inline => "cd /var/www && php artisan migrate --env=tinbox"
+        lv4_config.vm.provision :shell, :inline => "cd /var/www && php artisan db:seed --env=tinbox"
 
     end
 end

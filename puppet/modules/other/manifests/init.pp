@@ -12,4 +12,10 @@ class other
             ensure  => present,
             require => Exec['apt-get update']
     }
+    package
+    {
+        "vim":
+        ensure  => present,
+        require => Exec['apt-get update']
+    }
 }

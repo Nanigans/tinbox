@@ -35,6 +35,7 @@ Vagrant.configure("2") do |config|
         lv4_config.vm.provision :shell, :inline => "chmod 777 /var/www/app/storage/*"
         lv4_config.vm.provision :shell, :inline => "cd /var/www && php artisan migrate --env=tinbox"
         lv4_config.vm.provision :shell, :inline => "cd /var/www && php artisan db:seed --env=tinbox"
+        lv4_config.vm.provision :shell, :inline => "cd /var/www && php artisan ide-helper:generate --env=tinbox"
 
     end
 end

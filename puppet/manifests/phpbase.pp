@@ -1,5 +1,5 @@
 # Enable XDebug ("0" | "1")
-$use_xdebug = "0"
+$use_xdebug = "1"
 
 # Default path
 Exec
@@ -12,6 +12,12 @@ exec
     'apt-get update':
         command => '/usr/bin/apt-get update',
         require => Exec['add php55 apt-repo']
+}
+
+# create a simple hostname and ip host entry
+host { 'adbox.nanigans.com':
+  ip => '192.168.56.101',
+  host_aliases => 'adbox',
 }
 
 include bootstrap

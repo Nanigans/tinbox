@@ -58,4 +58,11 @@ class gulpjs
     command => "npm install -g gulp-livereload",
     require => Exec["install-gulp-save-dev"]
   }
+  
+  exec
+  {
+    "install-gulp-autoprefixer":
+    command => "npm install -g gulp-autoprefixer",
+    require => Exec["install-gulp-save-dev"]
+  }
 }

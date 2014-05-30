@@ -47,8 +47,8 @@ class gulpjs
 
   exec
   {
-    "install-gulp-autoprefixer":
-    command => "npm install -g gulp-autoprefixer",
+    "install-gulp-ignore":
+    command => "npm install -g gulp-ignore",
     require => Exec["install-gulp-save-dev"]
   }
 

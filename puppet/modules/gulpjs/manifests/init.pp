@@ -13,7 +13,8 @@ class gulpjs
   exec
   {
     "install-gulp-save-dev":
-    command => "/bin/sh -c 'cd /var/www && npm install --save-dev gulp'",
+    cwd     => "/var/www",
+    command => "npm install --save-dev gulp",
     require => Exec["install-gulp"]
   }
 

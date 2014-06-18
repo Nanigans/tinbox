@@ -7,15 +7,12 @@ class php
         "php5-mysql",
         "php-pear",
         "php5-dev",
-        "php-apc",
         "php5-mcrypt",
         "php5-gd",
         "php5-curl",
         "libapache2-mod-php5",
         "php5-xdebug",
-        "php5-memcache",
         "php5-memcached",
-        "php5-pgsql",
         "php5-sqlite"
     ]
 

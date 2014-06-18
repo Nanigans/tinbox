@@ -18,7 +18,7 @@ PHP 5.4 w/ Apache 2.2 is available on the php54 branch.
 * Vagrant will then use puppet to provision the base virtual box with our LAMP stack (this could take a few minutes) also note that composer will need to fetch all of the packages defined in the app's composer.json which will add some more time to the first provisioning run
 * You can verify that everything was successful by opening http://localhost:8888 in a browser
 
-*Note: You may have to change permissions on the www/app/storage folder to 777 under the host OS* 
+*Note: You may have to change permissions on the www/app/storage folder to 777 under the host OS*
 
 For example: `chmod -R 777 www/app/storage/`
 
@@ -29,7 +29,7 @@ Some basic information on interacting with the vagrant box
 ### Port Forwards
 
 * 8888 - Apache
-* 8889 - MySQL 
+* 8889 - MySQL
 * 5433 - PostgreSQL
 
 
@@ -40,13 +40,9 @@ Some basic information on interacting with the vagrant box
 * DB Name: database
 
 
-### PHPmyAdmin
-
-Accessible at http://localhost:8888/phpmyadmin using MySQL access credentials above.
-
 ### PHP XDebug
 
-XDebug is included in the build but **disabled by default** because of the effect it can have on performance.  
+XDebug is included in the build but **disabled by default** because of the effect it can have on performance.
 
 To enable XDebug:
 

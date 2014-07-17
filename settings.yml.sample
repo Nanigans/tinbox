@@ -1,0 +1,5 @@
+# To override the default settings for tinbox copy this file to settings.yml and make your changes.
+# settings.yml is ignored by git so these overrides are developer specific and never shared.
+
+#src_folder: '../../src/tinman'
+#hostname: 'tinbox.nanigans.com'

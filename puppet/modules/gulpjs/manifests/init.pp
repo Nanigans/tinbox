@@ -5,58 +5,9 @@ class gulpjs
 
   exec
   {
-    "install-gulp":
-    command => "npm install -g gulp",
-    require => Package["nodejs"]
-  }
-
-  exec
-  {
-    "install-gulp-save-dev":
+    "install-node-modules":
     cwd     => "/var/www",
-    command => "npm install --save-dev gulp",
-    require => Exec["install-gulp"]
-  }
-
-  exec
-  {
-    "install-gulp-minify-css":
-    command => "npm install -g gulp-minify-css",
-    require => Exec["install-gulp-save-dev"]
-  }
-
-  exec
-  {
-    "install-gulp-uglify":
-    command => "npm install -g gulp-uglify",
-    require => Exec["install-gulp-save-dev"]
-  }
-
-  exec
-  {
-    "install-gulp-concat":
-    command => "npm install -g gulp-concat",
-    require => Exec["install-gulp-save-dev"]
-  }
-
-  exec
-  {
-    "install-gulp-less-sourcemap":
-    command => "npm install -g gulp-less-sourcemap",
-    require => Exec["install-gulp-save-dev"]
-  }
-
-  exec
-  {
-    "install-gulp-ignore":
-    command => "npm install -g gulp-ignore",
-    require => Exec["install-gulp-save-dev"]
-  }
-
-  exec
-  {
-    "install-gulp-livereload":
-    command => "npm install -g gulp-livereload",
-    require => Exec["install-gulp-save-dev"]
+    command => "npm install --save-dev",
+    require => Package["nodejs"]
   }
 }

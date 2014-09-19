@@ -5,9 +5,16 @@ class gulpjs
 
   exec
   {
+    "install-gulp":
+    command => "npm install -g gulp",
+    require => Package["nodejs"]
+  }
+
+  exec
+  {
     "install-node-modules":
     cwd     => "/var/www",
-    command => "npm install --save-dev",
-    require => Package["nodejs"]
+    command => "npm install",
+    require => Exec["install-gulp"]
   }
 }

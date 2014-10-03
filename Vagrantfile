@@ -26,6 +26,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     tinbox.vm.hostname = settings['hostname']
     tinbox.vm.synced_folder settings['src_folder'], "/var/www", {:mount_options => ['dmode=777','fmode=777']}
 
+    # Set timezone
+    tinbox.vm.provision :shell, :inline => "echo \"Etc/UTC\" | sudo tee /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata"
+
     # Ports
     tinbox.vm.network :forwarded_port, guest: 3306, host: 8889, auto_correct: true
     tinbox.vm.network :forwarded_port, guest: 5432, host: 5433, auto_correct: true
@@ -33,10 +36,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     tinbox.vm.provider :virtualbox do |v|
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-      v.customize ["modifyvm", :id, "--memory", "512"]
+      v.customize ["modifyvm", :id, "--memory", "1024"]
     end
-
-    tinbox.vm.provision :shell, :inline => "echo \"America/New_York\" | sudo tee /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata"
 
     tinbox.vm.provision "puppet" do |puppet|
       puppet.manifests_path = "puppet/manifests"

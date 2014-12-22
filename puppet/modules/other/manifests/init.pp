@@ -1,21 +1,10 @@
-class other 
+class other
 {
-    package 
-    { 
-        "curl":
-            ensure  => present,
-            require => Exec['apt-get update']
-    }
-    package 
-    { 
-        "sqlite":
-            ensure  => present,
-            require => Exec['apt-get update']
-    }
     package
     {
-        "vim":
-        ensure  => present,
-        require => Exec['apt-get update']
+        ["curl", "sqlite", "vim", "git-core", "unzip", "bash"]:
+            ensure  => present,
+            require => Exec['apt-get update'],
+            before => Apt::Ppa["ppa:webupd8team/java"],
     }
 }

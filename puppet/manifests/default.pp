@@ -11,7 +11,8 @@ exec
 {
     'apt-get update':
         command => '/usr/bin/apt-get update',
-        require => Exec['add php55 apt-repo']
+        require => Exec['add php55 apt-repo'],
+        before => Apt::Ppa["ppa:webupd8team/java"],
 }
 
 # create a simple hostname and ip host entry
@@ -33,3 +34,6 @@ include nodejs
 include gulpjs
 
 include laravel_app
+
+include grails
+

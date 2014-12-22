@@ -1,9 +1,9 @@
 class laravel_app
 {
 
-	package { 'git-core':
-    	ensure => present,
-    }
+	#package { 'git-core':
+  #  	ensure => present,
+  #  }
 
 	# Check to see if there's a composer.json and app directory before we delete everything
 	# We need to clean the directory in case a .DS_STORE file or other junk pops up before

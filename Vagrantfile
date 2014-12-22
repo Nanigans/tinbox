@@ -24,7 +24,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     tinbox.ssh.forward_agent = true
     tinbox.vm.network "private_network", ip: "192.168.56.102"
     tinbox.vm.hostname = settings['hostname']
-    tinbox.vm.synced_folder settings['src_folder'], "/var/www", {:mount_options => ['dmode=777','fmode=777']}
+    tinbox.vm.synced_folder settings['src_folder'] + "/laravel", "/var/www", {:mount_options => ['dmode=777','fmode=777']}
+    tinbox.vm.synced_folder settings['src_folder'] + "/grails", "/var/grails", {:mount_options => ['dmode=777','fmode=777']}
 
     # Set timezone
     tinbox.vm.provision :shell, :inline => "echo \"Etc/UTC\" | sudo tee /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata"
@@ -41,16 +42,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     tinbox.vm.provision "puppet" do |puppet|
       puppet.manifests_path = "puppet/manifests"
-      puppet.manifest_file  = "phpbase.pp"
+      puppet.manifest_file  = "default.pp"
       puppet.module_path = "puppet/modules"
       #puppet.options = "--verbose --debug"
     end
 
-    tinbox.vm.provision :shell, :path => "puppet/scripts/enable_remote_mysql_access.sh"
-    tinbox.vm.provision :shell, :inline => "chmod 777 /var/www/app/storage/*"
-    tinbox.vm.provision :shell, :inline => "cd /var/www && php artisan migrate --env=tinbox"
-    tinbox.vm.provision :shell, :inline => "cd /var/www && php artisan db:seed --env=tinbox"
-    tinbox.vm.provision :shell, :inline => "cd /var/www && php artisan ide-helper:generate --env=tinbox"
+    #tinbox.vm.provision :shell, :path => "puppet/scripts/enable_remote_mysql_access.sh"
+
+    # PHP shell commands
+    #tinbox.vm.provision :shell, :inline => "chmod 777 /var/www/app/storage/*"
+    #tinbox.vm.provision :shell, :inline => "cd /var/www && php artisan migrate --env=tinbox"
+    #tinbox.vm.provision :shell, :inline => "cd /var/www && php artisan db:seed --env=tinbox"
+    #tinbox.vm.provision :shell, :inline => "cd /var/www && php artisan ide-helper:generate --env=tinbox"
+
+    # Groovy shell commands
+    tinbox.vm.provision :shell, :path => "bootstrap_grails.sh"
+    #tinbox.vm.provision :shell, :inline => "cd /var/grails && grails run-app"
 
   end
 end
